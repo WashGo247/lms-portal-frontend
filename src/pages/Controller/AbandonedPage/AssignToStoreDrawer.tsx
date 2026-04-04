@@ -47,15 +47,22 @@ export const AssignToStoreDrawer: React.FC<Props> = ({
     error: assignControllerError,
   } = useAssignControllerApi<AssignControllerResponse>();
 
-  const handleAssignToStore = () => {
-    assignController({
-      device_id: deviceId,
-      name: '',
-      total_relays: 0,
-      store_id: form.getFieldsValue().store_id,
-    });
-    onSave?.();
-  }
+  const handleAssignToStore = async () => {
+    try {
+      const values = await form.validateFields();
+      await assignController({
+        device_id: deviceId,
+        name: '',
+        total_relays: 0,
+        store_id: values.store_id,
+      });
+      form.resetFields();
+      setIsDrawerOpen(false);
+      onSave?.();
+    } catch {
+      // Validation failures are shown on the field; API errors use assignControllerError effect.
+    }
+  };
 
   useEffect(() => {
     listStore({ page: 1, page_size: 100 });
@@ -81,7 +88,10 @@ export const AssignToStoreDrawer: React.FC<Props> = ({
     <Drawer
       title={t('controller.assignToStore')}
       placement="right"
-      onClose={() => setIsDrawerOpen(false)}
+      onClose={() => {
+        form.resetFields();
+        setIsDrawerOpen(false);
+      }}
       open={isDrawerOpen}
       width={480}
       styles={{
@@ -99,34 +109,44 @@ export const AssignToStoreDrawer: React.FC<Props> = ({
         gap={theme.custom.spacing.medium}
         style={{ width: '100%', height: '100%' }}
       >
-        <Flex
-          vertical
-          gap={theme.custom.spacing.medium}
+        <Form
+          form={form}
+          layout="vertical"
           style={{
             width: '100%',
             height: '100%',
             overflowY: 'auto',
           }}
         >
-          <Select
-            allowClear
-            placeholder={t('common.selectStore')}
-            loading={listStoreLoading}
-            options={listStoreData?.data?.map((item) => ({
-              label: item.name,
-              value: item.id,
-            }))}
-            onChange={(value) => {
-              form.setFieldsValue({ store_id: value });
-            }}
-          />
-        </Flex>
+          <Form.Item
+            name="store_id"
+            rules={[
+              {
+                required: true,
+                message: t('common.selectStore'),
+              },
+            ]}
+          >
+            <Select
+              allowClear
+              placeholder={t('common.selectStore')}
+              loading={listStoreLoading}
+              options={listStoreData?.data?.map((item) => ({
+                label: item.name,
+                value: item.id,
+              }))}
+            />
+          </Form.Item>
+        </Form>
 
         <Flex justify="flex-end" gap={theme.custom.spacing.medium} style={{ width: '100%', marginTop: 'auto' }}>
           <Button
             type="default"
             size="large"
-            onClick={() => setIsDrawerOpen(false)}
+            onClick={() => {
+              form.resetFields();
+              setIsDrawerOpen(false);
+            }}
             style={{ width: '100%' }}
           >
             {t('common.cancel')}
