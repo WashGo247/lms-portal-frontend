@@ -49,9 +49,9 @@ export const StoreKeyMetrics: React.FC<Props> = ({ store, filters, datetimeFilte
   } = useGetDashboardOverviewKeyMetricsApi();
 
   const dateLabel = () => {
-    const today = dayjs();
-    const filterStart = filters.start_datetime ? dayjs(filters.start_datetime) : null;
-    const filterEnd = filters.end_datetime ? dayjs(filters.end_datetime) : null;
+    const today = dayjs.tz();
+    const filterStart = filters.start_datetime ? dayjs.tz(filters.start_datetime) : null;
+    const filterEnd = filters.end_datetime ? dayjs.tz(filters.end_datetime) : null;
 
     if (filterStart && filterEnd) {
       if (filterStart.isSame(today, 'day') && filterEnd.isSame(today, 'day')) {

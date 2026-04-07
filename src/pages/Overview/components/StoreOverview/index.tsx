@@ -30,32 +30,32 @@ export const StoreOverview: React.FC<Props> = ({ store, onFilterClick, datetimeF
       label: t('overviewV2.today'),
       value: 'today',
       filter: {
-        start_datetime: dayjs().startOf('day').toISOString(),
-        end_datetime: dayjs().endOf('day').toISOString(),
+        start_datetime: dayjs.tz().startOf('day').toISOString(),
+        end_datetime: dayjs.tz().endOf('day').toISOString(),
       },
     },
     {
       label: t('overviewV2.yesterday'),
       value: 'yesterday',
       filter: {
-        start_datetime: dayjs().subtract(1, 'day').startOf('day').toISOString(),
-        end_datetime: dayjs().subtract(1, 'day').endOf('day').toISOString(),
+        start_datetime: dayjs.tz().subtract(1, 'day').startOf('day').toISOString(),
+        end_datetime: dayjs.tz().subtract(1, 'day').endOf('day').toISOString(),
       },
     },
     {
       label: t('overviewV2.thisWeek'),
       value: 'this_week',
       filter: {
-        start_datetime: dayjs().startOf('week').toISOString(),
-        end_datetime: dayjs().endOf('week').toISOString(),
+        start_datetime: dayjs.tz().startOf('week').toISOString(),
+        end_datetime: dayjs.tz().endOf('week').toISOString(),
       },
     },
     {
       label: t('overviewV2.thisMonth'),
       value: 'this_month',
       filter: {
-        start_datetime: dayjs().startOf('month').toISOString(),
-        end_datetime: dayjs().endOf('month').toISOString(),
+        start_datetime: dayjs.tz().startOf('month').toISOString(),
+        end_datetime: dayjs.tz().endOf('month').toISOString(),
       },
     },
     {
@@ -66,8 +66,8 @@ export const StoreOverview: React.FC<Props> = ({ store, onFilterClick, datetimeF
   ];
 
   const [filters, setFilters] = useState<Record<string, any>>({
-    start_datetime: dayjs().startOf('day').toISOString(),
-    end_datetime: dayjs().endOf('day').toISOString(),
+    start_datetime: dayjs.tz().startOf('day').toISOString(),
+    end_datetime: dayjs.tz().endOf('day').toISOString(),
   });
 
   const handleFilterChange = (newFilters: Record<string, any>) => {
