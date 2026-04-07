@@ -14,6 +14,9 @@ import type {
   UpdateFeatureFlagParams,
 } from '@shared/types/featureFlag';
 
+import { normalizeFeatureFlagKey, validateFeatureFlagKey } from '@shared/utils/featureFlagKey';
+
+import { FeatureFlagKeyNamingGuidelines } from './FeatureFlagKeyNamingGuidelines';
 import { FeatureFlagScopeSelector } from './FeatureFlagScopeSelector';
 
 interface Props {
@@ -24,8 +27,6 @@ interface Props {
   onSave: (data: CreateFeatureFlagParams | UpdateFeatureFlagParams) => void;
   onClose: () => void;
 }
-
-const KEY_PATTERN = /^[a-z][a-z0-9_]*$/;
 
 export const FeatureFlagDrawer: React.FC<Props> = ({
   open,
@@ -63,7 +64,7 @@ export const FeatureFlagDrawer: React.FC<Props> = ({
   }) => {
     if (mode === 'create') {
       onSave({
-        key: values.key!,
+        key: normalizeFeatureFlagKey(values.key),
         displayName: values.displayName,
         description: values.description,
         isEnabled: values.isEnabled,
@@ -120,19 +121,34 @@ export const FeatureFlagDrawer: React.FC<Props> = ({
           isEnabled: false,
           scope: { scopeType: 'all', scopeIds: [] },
         }}
+        style={{ width: '100%' }}
       >
-        <Flex vertical gap={theme.custom.spacing.medium}>
+        <Flex vertical gap={theme.custom.spacing.medium} style={{ width: '100%' }}>
+          <FeatureFlagKeyNamingGuidelines />
+
           <BaseDetailSection title={t('featureFlag.sections.basicInfo')}>
             {mode === 'create' ? (
               <Form.Item
                 name="key"
                 label={t('featureFlag.fields.key')}
                 rules={[
-                  { required: true, message: t('featureFlag.validation.keyRequired') },
-                  { pattern: KEY_PATTERN, message: t('featureFlag.validation.keyFormat') },
+                  {
+                    validator: async (_, value) => {
+                      const result = validateFeatureFlagKey(value);
+                      if (result.valid) {
+                        return;
+                      }
+                      if (result.reason === 'required') {
+                        throw new Error(t('featureFlag.validation.keyRequired'));
+                      }
+                      throw new Error(t('featureFlag.validation.keyFormat'));
+                    },
+                  },
                 ]}
+                validateTrigger={[]}
+                style={{ width: '100%' }}
               >
-                <Input size="large" placeholder="e.g. kiosk_v2_enabled" />
+                <Input size="large" placeholder="e.g. checkout.new_flow" />
               </Form.Item>
             ) : (
               <Form.Item label={t('featureFlag.fields.key')}>
@@ -144,11 +160,16 @@ export const FeatureFlagDrawer: React.FC<Props> = ({
               name="displayName"
               label={t('featureFlag.fields.displayName')}
               rules={[{ required: true, message: t('featureFlag.validation.displayNameRequired') }]}
+              style={{ width: '100%' }}
             >
               <Input size="large" />
             </Form.Item>
 
-            <Form.Item name="description" label={t('featureFlag.fields.description')}>
+            <Form.Item
+              name="description"
+              label={t('featureFlag.fields.description')}
+              style={{ width: '100%' }}
+            >
               <Input.TextArea rows={3} />
             </Form.Item>
 
@@ -162,10 +183,11 @@ export const FeatureFlagDrawer: React.FC<Props> = ({
           </BaseDetailSection>
 
           <BaseDetailSection title={t('featureFlag.sections.scope')}>
-            <Form.Item name="scope" label={t('featureFlag.fields.scope')}>
+            <Form.Item name="scope" label={t('featureFlag.fields.scope')} style={{ width: '100%' }}>
               <FeatureFlagScopeSelector
                 value={form.getFieldValue('scope') ?? { scopeType: 'all', scopeIds: [] }}
                 onChange={v => form.setFieldValue('scope', v)}
+                style={{ width: '100%' }}
               />
             </Form.Item>
           </BaseDetailSection>

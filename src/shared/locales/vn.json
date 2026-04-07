@@ -855,8 +855,18 @@
     },
     "validation": {
       "keyRequired": "Khóa là bắt buộc",
-      "keyFormat": "Khóa phải khớp với ^[a-z][a-z0-9_]*$",
+      "keyFormat": "Định dạng khóa không hợp lệ. Dùng các phần cách nhau bằng dấu chấm (vd. checkout.new_flow). Phần đầu chỉ chữ và số; các phần sau có thể thêm dấu gạch dưới.",
       "displayNameRequired": "Tên hiển thị là bắt buộc"
+    },
+    "keyNaming": {
+      "title": "Quy tắc đặt tên",
+      "dotNotation": "Dùng ký hiệu chấm: domain.feature",
+      "example1": "checkout.new_flow — trải nghiệm thanh toán mới",
+      "example2": "order.bulk_create — tạo đơn hàng hàng loạt",
+      "lowercase": "Chỉ chữ thường. Phần đầu: chữ và số; các phần sau có thể thêm dấu gạch dưới.",
+      "nouns": "Dùng danh từ, không dùng động từ.",
+      "noEnv": "Không đưa môi trường, tenant hay cửa hàng vào khóa.",
+      "versioning": "Có thể thêm phiên bản/variant: .v2, .beta, hoặc phần mô tả như .enabled_to_update."
     },
     "deleteConfirmTitle": "Xóa Feature Flag",
     "deleteConfirmContent": "Bạn có chắc muốn xóa \"{{key}}\"? Hành động này không thể hoàn tác.",

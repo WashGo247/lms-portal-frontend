@@ -15,11 +15,12 @@ interface ScopeValue {
 interface Props {
   value:    ScopeValue;
   onChange: (value: ScopeValue) => void;
+  style?: React.CSSProperties;
 }
 
 const DEBOUNCE_MS = 300;
 
-export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange }) => {
+export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange, style }) => {
   const { t } = useTranslation();
 
   const tenants = useGetTenantSlimList();
@@ -65,15 +66,15 @@ export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange }) =
     );
   }, [stores, tenantFilter]);
 
-  const tenantOptions = (tenants.data ?? []).map(t => ({ label: t.name, value: t.id }));
+  const tenantOptions = (tenants.data ?? []).map((t: any) => ({ label: t.name, value: t.id }));
 
-  const storeOptions = (stores.data ?? []).map(s => ({
+  const storeOptions = (stores.data ?? []).map((s: any) => ({
     label: `${s.name} (${s.tenantName})`,
     value: s.id,
   }));
 
   return (
-    <Flex vertical gap={8}>
+    <Flex vertical gap={8} style={style}>
       <Radio.Group
         value={value.scopeType}
         onChange={e => handleScopeTypeChange(e.target.value)}
@@ -85,6 +86,7 @@ export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange }) =
 
       {value.scopeType === 'tenants' && (
         <Select
+          size="large"
           mode="multiple"
           showSearch
           value={value.scopeIds}
@@ -106,6 +108,7 @@ export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange }) =
           <Select
             showSearch
             allowClear
+            size="large"
             value={tenantFilter}
             options={tenantOptions}
             loading={tenants.loading}
@@ -128,6 +131,7 @@ export const FeatureFlagScopeSelector: React.FC<Props> = ({ value, onChange }) =
             }
             onSearch={handleStoreSearch}
             onChange={scopeIds => onChange({ ...value, scopeIds })}
+            size="large"
             style={{ width: '100%' }}
             allowClear
           />

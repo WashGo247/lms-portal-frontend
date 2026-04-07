@@ -4,13 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { notification } from 'antd';
 
 import { PortalLayoutV2 } from '@shared/components/layouts/PortalLayoutV2';
-import { FeatureFlagDrawer } from '@shared/components/featureFlag/FeatureFlagDrawer';
-import { FeatureFlagTable } from '@shared/components/featureFlag/FeatureFlagTable';
+import { FeatureFlagDrawer } from '@pages/FeatureFlag/components/FeatureFlagDrawer';
+import { FeatureFlagTable } from '@pages/FeatureFlag/components/FeatureFlagTable';
 import { useCreateFeatureFlag } from '@shared/hooks/useCreateFeatureFlag';
 import { useDeleteFeatureFlag } from '@shared/hooks/useDeleteFeatureFlag';
 import { useGetFeatureFlags } from '@shared/hooks/useGetFeatureFlags';
 import { useUpdateFeatureFlag } from '@shared/hooks/useUpdateFeatureFlag';
-import type { CreateFeatureFlagParams, FeatureFlag, UpdateFeatureFlagParams } from '@shared/types/featureFlag';
+import type {
+  CreateFeatureFlagParams,
+  FeatureFlag,
+  UpdateFeatureFlagParams,
+} from '@shared/types/featureFlag';
 
 export const FeatureFlagPage: React.FC = () => {
   const { t } = useTranslation();

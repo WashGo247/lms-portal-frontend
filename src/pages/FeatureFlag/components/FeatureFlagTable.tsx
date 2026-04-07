@@ -56,7 +56,7 @@ export const FeatureFlagTable: React.FC<Props> = ({
       title: t('featureFlag.columns.name'),
       dataIndex: 'displayName',
       key: 'displayName',
-      width: 220,
+      width: 240,
       sorter: (a, b) => a.displayName.localeCompare(b.displayName),
       render: (name: string, record) => (
         <Typography.Link onClick={() => onEdit(record)}>{name}</Typography.Link>
@@ -66,36 +66,48 @@ export const FeatureFlagTable: React.FC<Props> = ({
       title: t('featureFlag.columns.key'),
       dataIndex: 'key',
       key: 'key',
+      width: 240,
       render: (key: string) => (
-        <Typography.Text code style={{ fontSize: theme.fontSizeSM }}>
+        <Typography.Text code style={{ fontSize: theme.custom.fontSize.small }}>
           {key}
-        </Typography.Text>
-      ),
-    },
-    {
-      title: t('featureFlag.columns.description'),
-      dataIndex: 'description',
-      key: 'description',
-      render: (desc: string) => (
-        <Typography.Text type="secondary" ellipsis>
-          {desc || '—'}
         </Typography.Text>
       ),
     },
     {
       title: t('featureFlag.columns.scope'),
       key: 'scope',
-      width: 140,
+      width: 240,
       render: (_, record) => (
         <Flex gap={4} align="center">
           <Tag>{t(`featureFlag.scope.${record.scopeType}`)}</Tag>
           {record.scopeType !== 'all' && record.scopeIds.length > 0 && (
-            <Typography.Text type="secondary" style={{ fontSize: theme.fontSizeSM }}>
+            <Typography.Text type="secondary" style={{ fontSize: theme.custom.fontSize.small }}>
               ({record.scopeIds.length})
             </Typography.Text>
           )}
         </Flex>
       ),
+    },
+    {
+      title: t('featureFlag.columns.description'),
+      dataIndex: 'description',
+      key: 'description',
+      width: 300,
+      render: (desc: string) => {
+        const text = desc?.trim() ? desc : '—';
+        return (
+          <Typography.Paragraph
+            type="secondary"
+            style={{ maxWidth: 300, marginBottom: 0 }}
+            ellipsis={{
+              rows: 3,
+              tooltip: desc?.trim() ? { title: desc.trim() } : undefined,
+            }}
+          >
+            {text}
+          </Typography.Paragraph>
+        );
+      },
     },
     {
       title: t('featureFlag.columns.enabled'),
@@ -106,7 +118,7 @@ export const FeatureFlagTable: React.FC<Props> = ({
     {
       title: t('common.actions'),
       key: 'actions',
-      width: 80,
+      width: 100,
       render: (_, record) => (
         <Dropdown
           trigger={['click']}

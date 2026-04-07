@@ -865,8 +865,18 @@
     },
     "validation": {
       "keyRequired": "Key is required",
-      "keyFormat": "Key must match ^[a-z][a-z0-9_]*$",
+      "keyFormat": "Invalid key format. Use dot-separated segments (e.g. checkout.new_flow). The first segment is letters and numbers only; later segments may include underscores.",
       "displayNameRequired": "Display name is required"
+    },
+    "keyNaming": {
+      "title": "Naming guidelines",
+      "dotNotation": "Use dot notation: domain.feature",
+      "example1": "checkout.new_flow — new checkout experience",
+      "example2": "order.bulk_create — bulk order creation",
+      "lowercase": "Use lowercase only. The first segment uses letters and numbers; later segments may also use underscores.",
+      "nouns": "Use nouns, not verbs.",
+      "noEnv": "Do not include environment, tenant, or store information in the key.",
+      "versioning": "Optional variants or versions: .v2, .beta, or descriptive segments like .enabled_to_update."
     },
     "deleteConfirmTitle": "Delete Feature Flag",
     "deleteConfirmContent": "Are you sure you want to delete \"{{key}}\"? This cannot be undone.",
