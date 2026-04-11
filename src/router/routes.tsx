@@ -1,5 +1,7 @@
 import { HomePage } from '@pages/HomePage';
 
+import { FeatureFlagPage } from '@pages/FeatureFlag';
+
 import { SignInPage } from '@pages/Auth';
 import { GenerateOTPPage } from '@pages/Auth/GenerateOTPPage';
 import { VerifyOTPPage } from '@pages/Auth/VerifyOTPPage';
@@ -294,6 +296,11 @@ export const routes: Route[] = [
   {
     path: '/subscription-plans/:id/edit',
     component: <SubscriptionPlanEditPage />,
+  },
+  // Feature Flags
+  {
+    path: '/feature-flags',
+    component: <FeatureFlagPage />,
   },
   // Subscription
   {

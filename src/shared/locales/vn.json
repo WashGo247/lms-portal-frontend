@@ -304,7 +304,8 @@
     "permissions": "Permissions",
     "groupPermissions": "Group Permissions",
     "tenants": "Tenants",
-    "subscriptions": "Subscriptions"
+    "subscriptions": "Subscriptions",
+    "featureFlags": "Cờ tính năng"
   },
   "messages": {
     "incorrectCredentials": "Thông tin đăng nhập không chính xác",
@@ -818,5 +819,61 @@
     "trialEnded": "Gói dùng thử đã hết hạn",
     "trialEndedDescription": "Gói dùng thử của bạn đã hết hạn. Vui lòng gia hạn gói đăng ký để tiếp tục sử dụng.",
     "goToHomePage": "Đến trang chủ"
+  },
+  "featureFlag": {
+    "pageTitle": "Cờ tính năng",
+    "addFlag": "Thêm cờ",
+    "createTitle": "Tạo cờ tính năng",
+    "editTitle": "Chỉnh sửa cờ tính năng",
+    "createSuccess": "Tạo cờ tính năng thành công",
+    "updateSuccess": "Cập nhật cờ tính năng thành công",
+    "deleteSuccess": "Xóa cờ tính năng thành công",
+    "deleteError": "Không thể xóa cờ tính năng",
+    "fetchError": "Không thể tải danh sách cờ tính năng",
+    "toggleError": "Không thể thay đổi trạng thái cờ",
+    "deleteConfirm": "Xóa cờ {{key}}? Hành động này không thể hoàn tác.",
+    "selectTenants": "Chọn tenants",
+    "selectStores": "Chọn cửa hàng",
+    "columns": {
+      "key": "Khóa",
+      "name": "Tên",
+      "scope": "Phạm vi",
+      "enabled": "Kích hoạt",
+      "description": "Mô tả"
+    },
+    "scope": {
+      "all": "Tất cả tenants",
+      "tenants": "Tenants cụ thể",
+      "stores": "Cửa hàng cụ thể"
+    },
+    "fields": {
+      "key": "Khóa",
+      "displayName": "Tên hiển thị",
+      "description": "Mô tả",
+      "enabled": "Kích hoạt",
+      "scope": "Phạm vi"
+    },
+    "validation": {
+      "keyRequired": "Khóa là bắt buộc",
+      "keyFormat": "Định dạng khóa không hợp lệ. Dùng các phần cách nhau bằng dấu chấm (vd. checkout.new_flow). Phần đầu chỉ chữ và số; các phần sau có thể thêm dấu gạch dưới.",
+      "displayNameRequired": "Tên hiển thị là bắt buộc"
+    },
+    "keyNaming": {
+      "title": "Quy tắc đặt tên",
+      "dotNotation": "Dùng ký hiệu chấm: domain.feature",
+      "example1": "checkout.new_flow — trải nghiệm thanh toán mới",
+      "example2": "order.bulk_create — tạo đơn hàng hàng loạt",
+      "lowercase": "Chỉ chữ thường. Phần đầu: chữ và số; các phần sau có thể thêm dấu gạch dưới.",
+      "nouns": "Dùng danh từ, không dùng động từ.",
+      "noEnv": "Không đưa môi trường, tenant hay cửa hàng vào khóa.",
+      "versioning": "Có thể thêm phiên bản/variant: .v2, .beta, hoặc phần mô tả như .enabled_to_update."
+    },
+    "deleteConfirmTitle": "Xóa Feature Flag",
+    "deleteConfirmContent": "Bạn có chắc muốn xóa \"{{key}}\"? Hành động này không thể hoàn tác.",
+    "sections": {
+      "basicInfo": "Thông tin cơ bản",
+      "scope": "Cấu hình phạm vi"
+    },
+    "filterByTenant": "Lọc theo tenant"
   }
 }

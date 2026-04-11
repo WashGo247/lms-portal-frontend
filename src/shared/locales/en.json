@@ -292,19 +292,20 @@
     "profile": "Profile",
     "logout": "Logout",
     "controllers": "Controllers",
-    "registerAbandonedControllers": "Register Abandoned",
+    "registerAbandonedControllers": "Register",
     "tenantProfile": "Tenant Profile",
-    "tenantMembers": "Tenant Members",
+    "tenantMembers": "Members",
     "orderDetail": "Order Detail",
     "language": "Language",
     "home": "Home",
-    "userProfile": "User Profile",
-    "promotionCampaign": "Promotion Campaign",
+    "userProfile": "My Account",
+    "promotionCampaign": "Promotion Campaigns",
     "firmware": "Firmware",
     "permissions": "Permissions",
     "groupPermissions": "Group Permissions",
     "tenants": "Tenants",
-    "subscriptions": "Subscriptions"
+    "subscriptions": "Subscriptions",
+    "featureFlags": "Feature Flags"
   },
   "messages": {
     "incorrectCredentials": "Incorrect credentials",
@@ -828,5 +829,61 @@
     "trialEnded": "Trial Ended",
     "trialEndedDescription": "Your trial has ended. Please renew your subscription to continue using the portal.",
     "goToHomePage": "Go to Home Page"
+  },
+  "featureFlag": {
+    "pageTitle": "Feature Flags",
+    "addFlag": "Add Flag",
+    "createTitle": "Create Feature Flag",
+    "editTitle": "Edit Feature Flag",
+    "createSuccess": "Feature flag created successfully",
+    "updateSuccess": "Feature flag updated successfully",
+    "deleteSuccess": "Feature flag deleted successfully",
+    "deleteError": "Failed to delete feature flag",
+    "fetchError": "Failed to load feature flags",
+    "toggleError": "Failed to toggle feature flag",
+    "deleteConfirm": "Delete flag {{key}}? This cannot be undone.",
+    "selectTenants": "Select tenants",
+    "selectStores": "Select stores",
+    "columns": {
+      "key": "Key",
+      "name": "Name",
+      "scope": "Scope",
+      "enabled": "Enabled",
+      "description": "Description"
+    },
+    "scope": {
+      "all": "All tenants",
+      "tenants": "Specific tenants",
+      "stores": "Specific stores"
+    },
+    "fields": {
+      "key": "Key",
+      "displayName": "Display Name",
+      "description": "Description",
+      "enabled": "Enabled",
+      "scope": "Scope"
+    },
+    "validation": {
+      "keyRequired": "Key is required",
+      "keyFormat": "Invalid key format. Use dot-separated segments (e.g. checkout.new_flow). The first segment is letters and numbers only; later segments may include underscores.",
+      "displayNameRequired": "Display name is required"
+    },
+    "keyNaming": {
+      "title": "Naming guidelines",
+      "dotNotation": "Use dot notation: domain.feature",
+      "example1": "checkout.new_flow — new checkout experience",
+      "example2": "order.bulk_create — bulk order creation",
+      "lowercase": "Use lowercase only. The first segment uses letters and numbers; later segments may also use underscores.",
+      "nouns": "Use nouns, not verbs.",
+      "noEnv": "Do not include environment, tenant, or store information in the key.",
+      "versioning": "Optional variants or versions: .v2, .beta, or descriptive segments like .enabled_to_update."
+    },
+    "deleteConfirmTitle": "Delete Feature Flag",
+    "deleteConfirmContent": "Are you sure you want to delete \"{{key}}\"? This cannot be undone.",
+    "sections": {
+      "basicInfo": "Basic Information",
+      "scope": "Scope Configuration"
+    },
+    "filterByTenant": "Filter by tenant"
   }
 }

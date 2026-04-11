@@ -25,7 +25,8 @@ import {
   User as UserIcon,
   Buildings2,
   Star,
-  Library
+  Library,
+  Flag2,
 } from '@solar-icons/react'
 
 import { useTheme } from '@shared/theme/useTheme';
@@ -152,6 +153,12 @@ export const Sider: React.FC<Props> = ({ style, onCollapseChange }) => {
       icon: <Star />,
       label: t('navigation.subscriptions'),
       permission: 'subscription_plan.list',
+    },
+    {
+      key: 'feature-flags',
+      icon: <Flag2 />,
+      label: t('navigation.featureFlags'),
+      permission: 'feature_flag.list',
     },
     { type: 'divider' },
     {
