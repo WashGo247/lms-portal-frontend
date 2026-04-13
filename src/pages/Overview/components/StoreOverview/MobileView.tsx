@@ -13,6 +13,7 @@ import { ChipFilter, type QuickFilterOption } from '@shared/components/ChipFilte
 import { StoreKeyMetrics } from './StoreKeyMetrics';
 import { TopOrderOverview } from './TopOrderOverview';
 import { MachineOverview } from './MachineOverview';
+import { MachineStatusOverview } from './MachineStatusOverview';
 
 interface Props {
   store: Store;
@@ -52,6 +53,11 @@ export const MobileView: React.FC<Props> = ({
     {
       label: t('overviewV2.machine'),
       value: 'machines',
+      permission: 'machine.list',
+    },
+    {
+      label: t('overviewV2.machineStatus'),
+      value: 'machine_status',
       permission: 'machine.list',
     },
   ];
@@ -99,6 +105,10 @@ export const MobileView: React.FC<Props> = ({
 
       {selectedTab === 'machines' && can('machine.list') && (
         <MachineOverview store={store} />
+      )}
+
+      {selectedTab === 'machine_status' && can('machine.list') && (
+        <MachineStatusOverview store={store} filters={filters} />
       )}
     </Flex>
   );

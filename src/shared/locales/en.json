@@ -490,6 +490,7 @@
     }
   },
   "overviewV2": {
+    "machineStatus": "Machine Status",
     "notifications": "Notifications",
     "keyMetrics": "Key Metrics",
     "alerts": "Alerts",

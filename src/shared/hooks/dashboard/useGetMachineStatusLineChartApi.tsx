@@ -31,7 +31,7 @@ export const useGetMachineStatusLineChartApi = <T = GetMachineStatusLineChartRes
   const getMachineStatusLineChart = useCallback(async ({ store_id, machine_id, start_datetime, end_datetime }: GetMachineStatusLineChartRequest) => {
     setState(prevState => ({ ...prevState, loading: true, error: null }));
 
-    const url = `${getBackendUrl()}/api/v1/dashboard/overview/machine-status-line-chart`
+    const url = `${getBackendUrl()}/portal_api/v1/overview/machine-status-line-chart`
 
     const queryParams = {
       store_id,

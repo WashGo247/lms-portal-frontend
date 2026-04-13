@@ -487,6 +487,7 @@
     }
   },
   "overviewV2": {
+    "machineStatus": "Trạng thái Máy",
     "notifications": "Thông báo",
     "overview": "Tổng quan",
     "order": "Đơn hàng",
