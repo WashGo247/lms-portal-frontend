@@ -9,8 +9,8 @@ import axiosClient from '@core/axiosClient';
 export type GetMachineStatusLineChartRequest = {
   store_id?: string;
   machine_id?: string;
-  start_datetime?: string;
-  end_datetime?: string;
+  start_date?: string;
+  end_date?: string;
 }
 
 export type MachineStatusDatapoint = {
@@ -28,7 +28,7 @@ export const useGetMachineStatusLineChartApi = <T = GetMachineStatusLineChartRes
     error: null,
   });
 
-  const getMachineStatusLineChart = useCallback(async ({ store_id, machine_id, start_datetime, end_datetime }: GetMachineStatusLineChartRequest) => {
+  const getMachineStatusLineChart = useCallback(async ({ store_id, machine_id, start_date, end_date }: GetMachineStatusLineChartRequest) => {
     setState(prevState => ({ ...prevState, loading: true, error: null }));
 
     const url = `${getBackendUrl()}/portal_api/v1/overview/machine-status-line-chart`
@@ -36,8 +36,8 @@ export const useGetMachineStatusLineChartApi = <T = GetMachineStatusLineChartRes
     const queryParams = {
       store_id,
       machine_id,
-      start_datetime,
-      end_datetime,
+      start_date,
+      end_date,
     }
 
     try {

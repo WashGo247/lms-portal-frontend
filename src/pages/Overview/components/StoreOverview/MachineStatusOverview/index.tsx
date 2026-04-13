@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 
+import dayjs from '@shared/utils/dayjs';
 import { useIsMobile } from '@shared/hooks/useIsMobile';
 import { useListMachineApi, type ListMachineResponse } from '@shared/hooks/useListMachineApi';
 import {
@@ -34,24 +35,31 @@ export const MachineStatusOverview: React.FC<Props> = ({ store, filters }) => {
   } = useGetMachineStatusLineChartApi<GetMachineStatusLineChartResponse>();
 
   const fetchMachines = useCallback(() => {
-    listMachine({ store_id: store.id, page_size: 100, order_by: 'relay_no', order_direction: 'asc' });
+    listMachine({
+      store_id: store.id,
+      page: 1,
+      page_size: 100,
+      order_by: 'relay_no',
+      order_direction: 'asc',
+    });
   }, [store.id]);
 
   const fetchChartData = useCallback(() => {
+    const now = dayjs();
     getMachineStatusLineChart({
       store_id: store.id,
-      start_datetime: filters.start_datetime,
-      end_datetime: filters.end_datetime,
+      start_date: now.subtract(1, 'hour').toISOString(),
+      end_date: now.toISOString(),
     });
-  }, [store.id, filters.start_datetime, filters.end_datetime]);
+  }, [store.id]);
 
   useEffect(() => {
     fetchMachines();
-  }, [fetchMachines]);
+  }, []);
 
   useEffect(() => {
     fetchChartData();
-  }, [fetchChartData]);
+  }, []);
 
   const chartDataByLabel = useMemo(() => {
     if (!chartData) return {};

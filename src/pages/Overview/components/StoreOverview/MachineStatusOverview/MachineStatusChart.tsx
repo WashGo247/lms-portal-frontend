@@ -31,7 +31,7 @@ export const MachineStatusChart: React.FC<Props> = ({ machine, data, loading }) 
   const theme = useTheme();
 
   const chartData = useMemo(() => data.map((d) => ({
-    date: d.date,
+    date: dayjs.utc(d.date).local().toISOString(),
     value: STATUS_TO_VALUE[d.value] ?? 0,
     status: d.value,
   })), [data]);
