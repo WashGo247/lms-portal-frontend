@@ -17,4 +17,5 @@ export type Store = {
   tenant_id: string;
   tenant_name: string | null;
   payment_methods: PaymentMethod[];
+  logo_url: string | null;
 }

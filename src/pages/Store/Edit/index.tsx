@@ -57,6 +57,7 @@ export const StoreEditPage: React.FC = () => {
       status: form.getFieldValue('status'),
       tenant_id: form.getFieldValue('tenant_id'),
       payment_methods: form.getFieldValue('payment_methods'),
+      logo_url: form.getFieldValue('logo_url') || null,
     }
     updateStore(storeId, payload);
   }
@@ -97,6 +98,7 @@ export const StoreEditPage: React.FC = () => {
       address: storeData.address,
       contact_phone_number: storeData.contact_phone_number,
       status: storeData.status,
+      logo_url: storeData.logo_url ?? '',
     });
   }, [storeData]);
 

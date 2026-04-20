@@ -13,6 +13,7 @@ export type UpdateStoreRequest = {
   address: string;
   tenant_id: string;
   payment_methods: PaymentMethod[];
+  logo_url?: string | null;
 }
 
 export type UpdateStoreResponse = Store;
@@ -25,6 +26,7 @@ export async function updateStoreApi(storeId: string, request: UpdateStoreReques
     address: request.address,
     tenant_id: request.tenant_id,
     payment_methods: request.payment_methods,
+    logo_url: request.logo_url ?? null,
   }
 
   const res = await axiosClient.patch<UpdateStoreResponse>(url.replace(getBackendUrl(), ''), payload)
