@@ -107,7 +107,17 @@ export const AddSection: React.FC<Props> = ({ onSuccess, onError }) => {
               listType="picture-card"
               showUploadList={false}
               customRequest={handleLogoUpload}
-              accept="image/*"
+              accept=".svg,.png,image/svg+xml,image/png"
+              beforeUpload={(file) => {
+                const allowed = ['image/svg+xml', 'image/png'];
+                if (!allowed.includes(file.type)) {
+                  return Upload.LIST_IGNORE;
+                }
+                if (file.size > 5 * 1024 * 1024) {
+                  return Upload.LIST_IGNORE;
+                }
+                return true;
+              }}
             >
               {logoPreviewUrl ? (
                 <img
