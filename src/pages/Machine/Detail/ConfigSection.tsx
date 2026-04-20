@@ -22,6 +22,8 @@ export const MachineConfigSection: React.FC<Props> = ({ machine }: Props) => {
     <BaseDetailSection title={t('common.machineConfig')} onEdit={() => navigate(`/machines/${machine.id}/edit`)}>
       <DataWrapper title={t('common.relayNo')} value={machine.relay_no} />
       <DataWrapper title={t('common.machineType')} value={<DynamicTag value={machine.machine_type} />} />
+      <DataWrapper title={t('common.2')} value={machine.capacity_kg} />
+      <DataWrapper title={t('common.estimatedDuration')} value={machine.estimated_duration_minutes} />
       <DataWrapper title={t('common.basePrice')} value={formatCurrencyCompact(machine.base_price)} />
       <DataWrapper title={t('common.pulseDuration')} value={machine.pulse_duration} />
       <DataWrapper title={t('common.pulseInterval')} value={machine.pulse_interval} />

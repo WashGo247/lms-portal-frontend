@@ -24,6 +24,7 @@ export const EditSection: React.FC<Props> = ({ machine, onSave }: Props) => {
   const { t } = useTranslation();
 
   const [form] = Form.useForm();
+  const machineType = Form.useWatch('machine_type', form);
 
   useEffect(() => {
     form.setFieldsValue({
@@ -36,6 +37,8 @@ export const EditSection: React.FC<Props> = ({ machine, onSave }: Props) => {
       pulse_duration: machine.pulse_duration,
       pulse_interval: machine.pulse_interval,
       coin_value: machine.coin_value,
+      capacity_kg: machine.capacity_kg,
+      estimated_duration_minutes: machine.estimated_duration_minutes,
     });
   }, [machine]);
 
@@ -160,6 +163,24 @@ export const EditSection: React.FC<Props> = ({ machine, onSave }: Props) => {
             }}
           />
         </Form.Item>
+
+        <Form.Item
+          label={t('common.capacityKg')}
+          name="capacity_kg"
+          style={{ width: '100%' }}
+        >
+          <InputNumber size="large" style={{ width: '100%' }} min={0.1} step={0.5} addonAfter="kg" />
+        </Form.Item>
+
+        {machineType === MachineTypeEnum.WASHER && (
+          <Form.Item
+            label={t('common.estimatedDurationMinutes')}
+            name="estimated_duration_minutes"
+            style={{ width: '100%' }}
+          >
+            <InputNumber size="large" style={{ width: '100%' }} min={1} addonAfter={t('common.minutes')} />
+          </Form.Item>
+        )}
       </Form>
     </BaseEditSection>
   );

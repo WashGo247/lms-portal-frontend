@@ -18,9 +18,9 @@ import {
   type GetMachineResponse,
 } from '@shared/hooks/useGetMachineApi';
 import {
-  useUpdateMachineApi,
-  type UpdateMachineResponse,
-} from '@shared/hooks/useUpdateMachineApi';
+  useUpdateMachinePortalApi,
+  type UpdateMachinePortalResponse,
+} from '@shared/hooks/useUpdateMachinePortalApi';
 
 import { PortalLayoutV2 } from '@shared/components/layouts/PortalLayoutV2';
 import { EditSection } from './EditSection';
@@ -44,21 +44,20 @@ export const MachineEditPage: React.FC = () => {
     updateMachine,
     data: updateMachineData,
     error: updateMachineError,
-  } = useUpdateMachineApi<UpdateMachineResponse>();
+  } = useUpdateMachinePortalApi<UpdateMachinePortalResponse>();
 
   const onSave = (form: FormInstance) => {
-    updateMachine(
-      machineId,
-      {
-        name: form.getFieldValue('name'),
-        machine_type: form.getFieldValue('machine_type'),
-        base_price: form.getFieldValue('base_price'),
-        status: form.getFieldValue('status'),
-        pulse_duration: form.getFieldValue('pulse_duration'),
-        pulse_interval: form.getFieldValue('pulse_interval'),
-        coin_value: form.getFieldValue('coin_value'),
-      }
-    );
+    updateMachine(machineId, {
+      name: form.getFieldValue('name'),
+      machine_type: form.getFieldValue('machine_type'),
+      base_price: form.getFieldValue('base_price'),
+      status: form.getFieldValue('status'),
+      pulse_duration: form.getFieldValue('pulse_duration'),
+      pulse_interval: form.getFieldValue('pulse_interval'),
+      coin_value: form.getFieldValue('coin_value'),
+      capacity_kg: form.getFieldValue('capacity_kg') ?? null,
+      estimated_duration_minutes: form.getFieldValue('estimated_duration_minutes') ?? null,
+    });
   }
 
   useEffect(() => {

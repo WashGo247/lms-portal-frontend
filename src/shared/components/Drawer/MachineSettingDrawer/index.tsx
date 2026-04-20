@@ -8,9 +8,9 @@ import { useTheme } from '@shared/theme/useTheme';
 import { type Machine } from '@shared/types/machine';
 
 import {
-  useUpdateMachineApi,
-  type UpdateMachineResponse,
-} from '@shared/hooks/useUpdateMachineApi';
+  useUpdateMachinePortalApi,
+  type UpdateMachinePortalResponse,
+} from '@shared/hooks/useUpdateMachinePortalApi';
 
 import { EditBasicInformationSection } from './EditBasicInformationSection';
 import { EditMachineConfigSection } from './EditMachineConfigSection';
@@ -41,10 +41,15 @@ export const MachineSettingDrawer: React.FC<Props> = ({
     data: updateMachineData,
     loading: updateMachineLoading,
     error: updateMachineError,
-  } = useUpdateMachineApi<UpdateMachineResponse>();
+  } = useUpdateMachinePortalApi<UpdateMachinePortalResponse>();
 
   const handleUpdateMachine = async () => {
-    await updateMachine(machine.id, form.getFieldsValue());
+    const values = form.getFieldsValue();
+    await updateMachine(machine.id, {
+      ...values,
+      capacity_kg: values.capacity_kg ?? null,
+      estimated_duration_minutes: values.estimated_duration_minutes ?? null,
+    });
     onSave?.();
   }
 
@@ -54,7 +59,7 @@ export const MachineSettingDrawer: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    const initialValues = {
+    form.setFieldsValue({
       name: machine.name,
       status: machine.status,
       machine_type: machine.machine_type,
@@ -62,8 +67,9 @@ export const MachineSettingDrawer: React.FC<Props> = ({
       coin_value: machine.coin_value,
       pulse_duration: machine.pulse_duration,
       pulse_interval: machine.pulse_interval,
-    };
-    form.setFieldsValue(initialValues);
+      capacity_kg: machine.capacity_kg,
+      estimated_duration_minutes: machine.estimated_duration_minutes,
+    });
   }, [machine, form]);
 
   useEffect(() => {

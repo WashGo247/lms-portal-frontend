@@ -15,6 +15,8 @@ export type Machine = {
   status: string;
   store_id: string | null;
   store_name: string | null;
+  capacity_kg: number | null;
+  estimated_duration_minutes: number | null;
   pulse_duration: number;
   pulse_interval: number;
   coin_value: number;

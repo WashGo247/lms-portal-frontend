@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Typography, Form, type FormInstance, Input, Select } from 'antd';
+import { Typography, Form, type FormInstance, Input, InputNumber, Select } from 'antd';
 
 import { useTheme } from '@shared/theme/useTheme';
 
@@ -17,6 +17,7 @@ interface Props {
 export const EditBasicInformationSection: React.FC<Props> = ({ form, onChange }) => {
   const { t } = useTranslation();
   const theme = useTheme();
+  const machineType = Form.useWatch('machine_type', form);
 
   return (
     <Box
@@ -62,6 +63,24 @@ export const EditBasicInformationSection: React.FC<Props> = ({ form, onChange })
             </Select.Option>
           </Select>
         </Form.Item>
+
+        <Form.Item
+          label={t('common.capacityKg')}
+          name="capacity_kg"
+          style={{ width: '100%' }}
+        >
+          <InputNumber size="large" style={{ width: '100%' }} min={0.1} step={0.5} addonAfter="kg" />
+        </Form.Item>
+
+        {machineType === MachineTypeEnum.WASHER && (
+          <Form.Item
+            label={t('common.estimatedDurationMinutes')}
+            name="estimated_duration_minutes"
+            style={{ width: '100%' }}
+          >
+            <InputNumber size="large" style={{ width: '100%' }} min={1} addonAfter={t('common.minutes')} />
+          </Form.Item>
+        )}
       </Form>
     </Box>
   );
