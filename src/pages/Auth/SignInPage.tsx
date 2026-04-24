@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Typography, Form, Input, Divider, notification } from 'antd';
+import { Button, Typography, Form, Input, Divider, Spin, notification } from 'antd';
 
 import { useTheme } from '@shared/theme/useTheme';
 
@@ -25,6 +25,7 @@ import { useGetMeApi } from '@shared/hooks/useGetMe';
 import { useGetMePermissionsApi } from '@shared/hooks/useGetMePermissions';
 import { useProceedAuthSessionApi } from '@shared/hooks/useProceedAuthSessionApi';
 import { useProcessSystemTaskApi } from '@shared/hooks/useProcessSystemTaskApi';
+import { useApproveAuthSessionApi } from '@shared/hooks/useApproveAuthSessionApi';
 
 import { AuthContainer } from './components';
 
@@ -35,10 +36,16 @@ export const SignInPage: React.FC = () => {
 
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
+  const [autoAuthFailed, setAutoAuthFailed] = useState(false);
 
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id') as string;
   const redirectTo = searchParams.get('redirect_to') as string;
+
+  const hasExistingSession = sessionId
+    && !autoAuthFailed
+    && tokenManager.isAuthenticated()
+    && !tokenManager.isAccessTokenExpired();
 
   const {
     signIn,
@@ -65,6 +72,9 @@ export const SignInPage: React.FC = () => {
   const {
     processSystemTask,
   } = useProcessSystemTaskApi();
+  const {
+    approveAuthSession,
+  } = useApproveAuthSessionApi();
 
   const handleSubmit = async () => {
     await signIn({
@@ -123,6 +133,12 @@ export const SignInPage: React.FC = () => {
     if (sessionId) {
       proceedAuthSession({ sessionId: sessionId });
       processSystemTask({ sessionId: sessionId });
+
+      if (tokenManager.isAuthenticated() && !tokenManager.isAccessTokenExpired()) {
+        approveAuthSession(sessionId)
+          .then(() => getMe())
+          .catch(() => setAutoAuthFailed(true));
+      }
     }
   }, [sessionId]);
 
@@ -158,6 +174,15 @@ export const SignInPage: React.FC = () => {
       }
     }
   }, [getMeData]);
+
+  if (hasExistingSession) {
+    return (
+      <AuthContainer>
+        {contextHolder}
+        <Spin size="large" />
+      </AuthContainer>
+    );
+  }
 
   return (
     <AuthContainer>
