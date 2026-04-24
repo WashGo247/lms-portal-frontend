@@ -310,7 +310,8 @@
     "groupPermissions": "Group Permissions",
     "tenants": "Tenants",
     "subscriptions": "Subscriptions",
-    "featureFlags": "Cờ tính năng"
+    "featureFlags": "Cờ tính năng",
+    "customers": "Khách hàng"
   },
   "messages": {
     "incorrectCredentials": "Thông tin đăng nhập không chính xác",
@@ -424,7 +425,11 @@
     "youDoNotHavePermissionToAccessThisPage": "Bạn không có quyền truy cập trang này",
     "selectNotificationType": "Chọn loại thông báo",
     "comingSoon": "Tính năng này sẽ được cập nhật sớm",
-    "thisFeatureIsNotAvailableOnMobile": "Tính năng này không khả dụng trên thiết bị di động"
+    "thisFeatureIsNotAvailableOnMobile": "Tính năng này không khả dụng trên thiết bị di động",
+    "listError": "Không thể tải dữ liệu",
+    "getError": "Không thể lấy thông tin",
+    "updateSuccess": "Cập nhật thành công",
+    "updateError": "Không thể cập nhật"
   },
   "overview": {
     "keyMetrics": {
@@ -826,6 +831,17 @@
     "trialEnded": "Gói dùng thử đã hết hạn",
     "trialEndedDescription": "Gói dùng thử của bạn đã hết hạn. Vui lòng gia hạn gói đăng ký để tiếp tục sử dụng.",
     "goToHomePage": "Đến trang chủ"
+  },
+  "customer": {
+    "editCustomer": "Chỉnh sửa khách hàng",
+    "customerCode": "Mã khách hàng",
+    "fullName": "Họ và tên",
+    "gender": "Giới tính",
+    "genderMale": "Nam",
+    "genderFemale": "Nữ",
+    "genderOther": "Khác",
+    "address": "Địa chỉ",
+    "filterByGender": "Lọc theo giới tính"
   },
   "featureFlag": {
     "pageTitle": "Cờ tính năng",

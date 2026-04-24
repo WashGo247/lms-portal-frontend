@@ -310,7 +310,8 @@
     "groupPermissions": "Group Permissions",
     "tenants": "Tenants",
     "subscriptions": "Subscriptions",
-    "featureFlags": "Feature Flags"
+    "featureFlags": "Feature Flags",
+    "customers": "Customers"
   },
   "messages": {
     "incorrectCredentials": "Incorrect credentials",
@@ -427,7 +428,11 @@
     "youDoNotHavePermissionToAccessThisPage": "You do not have permission to access this page",
     "selectNotificationType": "Select Notification Type",
     "comingSoon": "This feature is coming soon",
-    "thisFeatureIsNotAvailableOnMobile": "This feature is not available on mobile"
+    "thisFeatureIsNotAvailableOnMobile": "This feature is not available on mobile",
+    "listError": "Failed to load data",
+    "getError": "Failed to get record",
+    "updateSuccess": "Updated successfully",
+    "updateError": "Failed to update"
   },
   "overview": {
     "keyMetrics": {
@@ -836,6 +841,17 @@
     "trialEnded": "Trial Ended",
     "trialEndedDescription": "Your trial has ended. Please renew your subscription to continue using the portal.",
     "goToHomePage": "Go to Home Page"
+  },
+  "customer": {
+    "editCustomer": "Edit Customer",
+    "customerCode": "Customer Code",
+    "fullName": "Full Name",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other",
+    "address": "Address",
+    "filterByGender": "Filter by gender"
   },
   "featureFlag": {
     "pageTitle": "Feature Flags",

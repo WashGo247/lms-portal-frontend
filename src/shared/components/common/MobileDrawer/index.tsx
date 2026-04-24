@@ -130,6 +130,12 @@ export const MobileDrawer: React.FC<Props> = ({ open, onClose }) => {
     },
     { type: 'divider' },
     {
+      key: 'customers',
+      icon: <UsersGroupTwoRounded />,
+      label: t('navigation.customers'),
+      permission: 'customer_profile.list',
+    },
+    {
       key: 'tenants',
       icon: <Buildings2 />,
       label: t('navigation.tenants'),

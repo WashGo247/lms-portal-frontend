@@ -131,6 +131,12 @@ export const Sider: React.FC<Props> = ({ style, onCollapseChange }) => {
     },
     { type: 'divider' },
     {
+      key: 'customers',
+      icon: <UsersGroupTwoRounded />,
+      label: t('navigation.customers'),
+      permission: 'customer_profile.list',
+    },
+    {
       key: 'tenants',
       icon: <Buildings2 />,
       label: t('navigation.tenants'),

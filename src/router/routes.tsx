@@ -44,6 +44,8 @@ import {
   RenewSubscriptionPage
 } from '@pages/Tenant';
 
+import { CustomerListPage } from '@pages/Customer';
+
 import {
   VerificationSuccessPage,
   VerificationFailedPage,
@@ -296,6 +298,11 @@ export const routes: Route[] = [
   {
     path: '/subscription-plans/:id/edit',
     component: <SubscriptionPlanEditPage />,
+  },
+  // Customers
+  {
+    path: '/customers',
+    component: <CustomerListPage />,
   },
   // Feature Flags
   {
